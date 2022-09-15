@@ -31,7 +31,7 @@ var selectorTypeMatcher = function(selector) {
   if(selector[0] === '.') return 'class'
   if(selector.includes('.')) return 'tag.class'
   if(selector.includes('>')) return 'childCombinator'
-  if(selector.includes(' ')) return 'descendantSelector'
+  if(selector.includes(' ')) return 'descendantCombinator'
   
   return 'tag'  
 };
@@ -42,11 +42,13 @@ var selectorTypeMatcher = function(selector) {
 // matchea el selector.
 
 var matchFunctionMaker = function(selector) {
+  
   var selectorType = selectorTypeMatcher(selector);
   var matchFunction;
   if (selectorType === "id") { 
    matchFunction = function(element){
-    return '#' + element.id === selector;
+    //return '#' + element.id === selector;
+    return `#${element.id}` === selector;
    }
   } else if (selectorType === "class") {
     //tener en cuenta que puede tener varias class
@@ -67,6 +69,25 @@ var matchFunctionMaker = function(selector) {
   } else if (selectorType === "tag") {
     matchFunction = function(element){
       return element.tagName === selector.toUpperCase();
+    }
+  } else if (selectorType === "childCombinator") {
+    matchFunction = function(element){
+      //$('div > img')
+      let [father, child] = selector.split(' ').join('').split('>');
+      return element.parentNode.tagName === father.toUpperCase() && element.tagName === child.toUpperCase();
+    }
+  } else if (selectorType === "descendantCombinator") {
+    matchFunction = (element) => {
+      let [rootFather, descendant] = selector.split(" ");
+      
+      if (element.parentNode) {
+        father = element.parentNode;
+        while (father) {
+          if (father.tagName && father.tagName.toLowerCase() === rootFather) break
+          father = father.parentNode;
+        }
+      }
+      return father && father.tagName.toLowerCase() === rootFather && element.tagName && element.tagName.toLowerCase() === descendant;
     }
   }
   
