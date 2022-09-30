@@ -1,0 +1,56 @@
+.oneCard{
+    border: 1px grey solid;
+    border-radius: 0.3rem;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(209, 204, 204);
+  }
+
+  .oneCardHot{
+    background-color: red;
+    border: 1px white solid;
+    border-radius: 0.3rem;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .close{
+    text-align: right;
+    margin: 0.5rem 0.5rem 0 0;
+  }
+  
+  .closeHot{
+    text-align: right;
+    margin: 0.5rem 0.5rem 0 0;
+  }
+
+  .close button{
+    background-color: red;
+    border-radius: 0.3rem;
+    color: white;
+  }
+
+  .closeHot button{
+    background-color: rgb(48, 127, 130);
+    border-radius: 0.3rem;
+    color: white;
+  }
+  
+  .clima{
+    display: flex;
+    flex-direction: column;
+   
+  
+  }
+  
+  .allclima{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .tempHot, .cityNameHot, .divTempHot h3{
+    color: white;
+  }

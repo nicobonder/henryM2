@@ -1,46 +1,49 @@
-(function () {
+//(function () { Una vez que configure el webpack y el bundle, tengo que eliminar las inmediate invoqued functions
+                  //tengo que pasar al formato de module export
+//window.EventEmitter = EventEmitter; //guarda algo en el obj global. Entonces cualquier modulo puede acceder a el y alguien la va a usar
 
-  window.EventEmitter = EventEmitter;
+//quiero que ese EventEmitter este expuesto con el formato de module.export. Voy al final de todo
 
-  // our EventEmitter constructor function
-  function EventEmitter () {
-    this.subscribers = {};
+// our EventEmitter constructor function
+export default function EventEmitter() {
+  this.subscribers = {};
+}
+
+// To be used like:
+// instanceOfEE.on('touchdown', cheerFn);
+EventEmitter.prototype.on = function (eventName, eventListener) {
+  // If this instance's subscribers object does not yet
+  // have the key matching the given event name, create the
+  // key and assign the value of an empty array.
+  if (!this.subscribers[eventName]) {
+    this.subscribers[eventName] = [];
   }
 
-  // To be used like:
-  // instanceOfEE.on('touchdown', cheerFn);
-  EventEmitter.prototype.on = function (eventName, eventListener) {
+  // Push the given listener function into the array
+  // located on the instance's subscribers object.
+  this.subscribers[eventName].push(eventListener);
+};
 
-    // If this instance's subscribers object does not yet
-    // have the key matching the given event name, create the
-    // key and assign the value of an empty array.
-    if (!this.subscribers[eventName]) {
-        this.subscribers[eventName] = [];
-    }
+// To be used like:
+// instanceOfEE.emit('codec', 'Hey Snake, Otacon is calling!');
+EventEmitter.prototype.emit = function (eventName) {
+  // If there are no subscribers to this event name, why even?
+  if (!this.subscribers[eventName]) {
+    return;
+  }
 
-    // Push the given listener function into the array
-    // located on the instance's subscribers object.
-    this.subscribers[eventName].push(eventListener);
+  // Grab the remaining arguments to our emit function.
+  var remainingArgs = [].slice.call(arguments, 1);
 
-  };
+  // For each subscriber, call it with our arguments.
+  this.subscribers[eventName].forEach(function (listener) {
+    listener.apply(null, remainingArgs);
+  });
+};
 
-  // To be used like:
-  // instanceOfEE.emit('codec', 'Hey Snake, Otacon is calling!');
-  EventEmitter.prototype.emit = function (eventName) {
+//})();
 
-    // If there are no subscribers to this event name, why even?
-    if (!this.subscribers[eventName]) {
-        return;
-    }
+//module.exports = EventEmitter; //exporto el EventEmitter. 
+                              //queda expuesto de esta forma en lugar de ponerlo en el obj global
 
-    // Grab the remaining arguments to our emit function.
-    var remainingArgs = [].slice.call(arguments, 1);
-
-    // For each subscriber, call it with our arguments.
-    this.subscribers[eventName].forEach(function (listener) {
-        listener.apply(null, remainingArgs);
-    });
-
-  };
-
-})();
+//con la sintaxis de ES6 comento el module.exports y voy a function EventEmitter() 

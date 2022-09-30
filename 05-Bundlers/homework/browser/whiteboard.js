@@ -1,6 +1,23 @@
-(function () {
+//(function () { saco las IIF
 
-  window.whiteboard = new window.EventEmitter();
+//  window.whiteboard = new window.EventEmitter(); //Lo comento porque ya no lo uso, y uso con el export module de event-emitter;
+
+  //usa el evento guardado en event-emmiter. Usa el módulo event-emitter
+  //Expone la vble whiteboard en el obj global. Entonces alguien va a usar esa vble, y en este caso seria app.js
+
+//Ahora que lo comente, para usarlo con el module.exports y require, tengo que guardarlo en una vble
+//var EE = require('./event-emitter');
+
+//ES6 comento var EE y hago
+import EE from './event-emitter';
+
+//Y tengo que crear la nueva instancia de event emitter
+var whiteboard = new EE(); //en EE lo que guarde es una funcion, por eso la invoco con los () aca
+
+//Ahora quiero exportar esa vble whiteboard, voy al final
+
+//ES6
+export default whiteboard;
 
   // Ultimately, the color of our stroke;
   var color;
@@ -113,4 +130,7 @@
 
   };
 
-})();
+//})();
+
+//module.exports = whiteboard;
+//lo comento para trabajar con ES6

@@ -1,0 +1,33 @@
+#searchForm{
+    border-radius: 0.25rem;
+    border: 1px black solid;
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem auto;
+    padding: 0.3rem;
+    background-color: rgb(73, 69, 69);
+}
+
+#searchInput{
+    width: 72%;
+    padding: 0.2rem;
+    height: 2.5rem;
+    border-radius: 0.25rem;
+}
+
+#searchBtn{
+    width: 24%;
+    padding: 0.2rem;
+    height: 2.5rem;
+    background-color: transparent;
+    color: aqua;
+    border: 1px solid aqua;
+    border-radius: 0.25rem;
+}
+
+#searchBtn:hover{
+    color: white;
+    border: 1px solid white;
+}
