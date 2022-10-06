@@ -12,9 +12,9 @@ export default function Cards({cities, onClose}) {
   return(
     <div >
       <ul className={s.climaCards}>
-        {cities ? cities.map((city) =>//comprueba que llegan cities
+        {cities ? cities.map((city, i) =>//comprueba que llegan cities
             <Card 
-            key={city.id}
+            key={i}
             onClose={onClose}
             name={city.name}
             id={city.id}

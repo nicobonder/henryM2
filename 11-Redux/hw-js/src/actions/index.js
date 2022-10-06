@@ -5,9 +5,14 @@ const { INCREMENTO, DECREMENTO } = require('../action-types');
 // de manejar ninguna de las lógicas actuales de actualización del store central de Redux.
 // Eso se lo deja al reducer(s).
 
-const incremento = null;
 
-const decremento = null;
+//const incremento = () => {return {type: INCREMENTO}}
+//NO está con " " porque son variables que ya defini en otro lado, entonces paso la vble y no la string
+const incremento = () => {
+  return{type: INCREMENTO}};
+
+const decremento = () => {
+  return{type: DECREMENTO}}
 
 module.exports = {
   incremento,

@@ -12,6 +12,48 @@ code {
     monospace;
 }
 
+h1{
+  margin: 1rem 0.5rem;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputDiv{
+  display: flex;
+  margin: 0.5rem;
+}
+
+label{
+  margin-right: 0.2rem;
+}
+
+input {
+  width: 20%;
+  padding: 0.2rem;
+}
+
+.subDiv{
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.submit{
+  margin: 1rem;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
 p.danger {
   color: red;
   font-size: 10px;
