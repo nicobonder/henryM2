@@ -5,7 +5,7 @@ import Cards from "./components/Cards.jsx";
 import Nav from "./components/Nav";
 
 
-/*COMPONENTE DE CLASE*/
+/***COMPONENTE DE CLASE***/
 import React, { Component } from 'react'
 
 export default class App extends Component {
@@ -46,6 +46,14 @@ export default class App extends Component {
       });
     }
 
+     onClose = (id) => {
+      this.setState((state) => {
+        return {cities: state.cities.filter((c) => c.id !== id)}
+       });
+     }  
+
+
+
   render() {
     return (
     <div className="App">
@@ -54,7 +62,7 @@ export default class App extends Component {
         {/*antes le pasaba data, ahora paso cities */}
     </div>
     )
-    }
+  }
 }
 
 

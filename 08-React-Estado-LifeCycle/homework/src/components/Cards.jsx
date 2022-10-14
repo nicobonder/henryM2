@@ -37,6 +37,7 @@ export default class Cards extends Component {
 
 /*COMPONENTE DE CLASE*/
 //cities se modifico en App, en el setCities
+
 // export default function Cards({cities, onClose}) {
 //   // acá va tu código
 //   // tip, podés usar un map
